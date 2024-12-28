@@ -17,5 +17,6 @@ public class Main {
         else
             e1.attendance(false);
 
+        e1.EmployeeWages();
     }
 }
