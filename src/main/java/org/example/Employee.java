@@ -6,6 +6,7 @@ public class Employee {
     int salaryPerHour=20;
     double dailySalary=0;
     double salaryPerMonth =0;
+
     public void attendance(boolean a){
         if (a){
             attendance=a;
@@ -17,6 +18,7 @@ public class Employee {
     }
     public void EmployeeWages(){
         if(attendance){
+
             dailySalary=normalWorkDay*salaryPerHour;
             System.out.println(dailySalary);
         }
@@ -29,4 +31,5 @@ public class Employee {
         salaryPerMonth = dailySalary*20;
         return salaryPerMonth;
     }
+
 }

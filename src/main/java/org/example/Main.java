@@ -10,22 +10,33 @@ public class Main {
         // to see how IntelliJ IDEA suggests fixing it.
         System.out.println("Welcome to Employee Wage Computation");
         Employee e1 = new Employee();
-        Random r1= new Random();
-        int i = (r1.nextInt(1000))%3;
+        int totalWorkingDays = 0;
+        int totalWorkingHours = 0;
 
-        switch (i){
-            case 1 -> e1.attendance(true);
-            case 2 ->
-            {
-                e1.attendance(true);
-                System.out.println("Part time today");
-                e1.normalWorkDay=4;
-            }
-            default -> e1.attendance(false);
-        }
+       while(totalWorkingHours<=100 && totalWorkingDays<=20) {
+           Random r1 = new Random();
+           int i = (r1.nextInt(1000)) % 3;
+
+           switch (i) {
+               case 1 -> {
+                   totalWorkingDays+=1;
+                   totalWorkingHours+=8;
+                   e1.attendance(true);
+               }
+               case 2 -> {
+                   totalWorkingDays+=1;
+                   totalWorkingHours+=4;
+                   e1.attendance(true);
+                   System.out.println("Part time today");
+                   e1.normalWorkDay = 4;
+               }
+               default -> e1.attendance(false);
+           }
+       }
         System.out.println("Employee Wage per day: " );
         e1.EmployeeWages();
-        System.out.println("Employee Wage per month: " +e1.SalaryPerMonth() );
+        System.out.println("Total working hour is: " +totalWorkingHours + " and total Working Days are: "+totalWorkingDays);
+        System.out.println("Employee Wage per month: " + totalWorkingHours*20 );
 
     }
 }
