@@ -11,12 +11,18 @@ public class Main {
         System.out.println("Welcome to Employee Wage Computation");
         Employee e1 = new Employee();
         Random r1= new Random();
-        int i = r1.nextInt(2);
-        if(i==0)
-            e1.attendance(true);
-        else
-            e1.attendance(false);
+        int i = (r1.nextInt(1000))%3;
 
+        switch (i){
+            case 1 -> e1.attendance(true);
+            case 2 ->
+            {
+                e1.attendance(true);
+                System.out.println("Part time today");
+                e1.normalWorkDay=4;
+            }
+            default -> e1.attendance(false);
+        }
         e1.EmployeeWages();
     }
 }
