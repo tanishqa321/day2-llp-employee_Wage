@@ -23,6 +23,9 @@ public class Main {
             }
             default -> e1.attendance(false);
         }
+        System.out.println("Employee Wage per day: " );
         e1.EmployeeWages();
+        System.out.println("Employee Wage per month: " +e1.SalaryPerMonth() );
+
     }
 }
