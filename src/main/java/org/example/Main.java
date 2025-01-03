@@ -28,7 +28,7 @@ public class Main {
                    totalWorkingHours+=4;
                    e1.attendance(true);
                    System.out.println("Part time today");
-                   e1.normalWorkDay = 4;
+                   e1.setNormalWorkDay(4);
                }
                default -> e1.attendance(false);
            }

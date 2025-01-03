@@ -1,11 +1,18 @@
 package org.example;
 
 public class Employee {
-    boolean attendance = false;
-    int normalWorkDay=8;
-    int salaryPerHour=20;
-    double dailySalary=0;
-    double salaryPerMonth =0;
+    private boolean attendance;
+    private  int normalWorkDay = 8;
+    private final int salaryPerHour = 20;
+    private double dailySalary;
+    private double salaryPerMonth;
+    public void setNormalWorkDay(int normalWorkDay) {
+        if (normalWorkDay > 0) { // Validation to ensure the value is positive
+            this.normalWorkDay = normalWorkDay;
+        } else {
+            System.out.println("Invalid work hours! Must be greater than 0.");
+        }
+    }
 
     public void attendance(boolean a){
         if (a){
