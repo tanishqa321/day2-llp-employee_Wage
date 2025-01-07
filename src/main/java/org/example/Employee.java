@@ -1,42 +1,55 @@
 package org.example;
 
+import java.util.Random;
+
 public class Employee {
-    private boolean attendance;
-    private  int normalWorkDay = 8;
-    private final int salaryPerHour = 20;
-    private double dailySalary;
-    private double salaryPerMonth;
-    public void setNormalWorkDay(int normalWorkDay) {
-        if (normalWorkDay > 0) { // Validation to ensure the value is positive
-            this.normalWorkDay = normalWorkDay;
-        } else {
-            System.out.println("Invalid work hours! Must be greater than 0.");
-        }
-    }
+    // Constants
+    private static final int IS_PART_TIME = 1;
+    private static final int IS_FULL_TIME = 2;
 
-    public void attendance(boolean a){
-        if (a){
-            attendance=a;
-            System.out.println("Employee is Present");
-        }
-        else {
-            System.out.println("Employee is absent");
-        }
-    }
-    public void EmployeeWages(){
-        if(attendance){
+    // Class method to compute employee wage for a given company
+    public static void computeEmployeeWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth) {
+        int totalWorkingDays = 0;
+        int totalWorkingHours = 0;
 
-            dailySalary=normalWorkDay*salaryPerHour;
-            System.out.println(dailySalary);
-        }
-        else {
-            dailySalary=0;
-            System.out.println(dailySalary);
-        }
-    }
-    public double SalaryPerMonth(){
-        salaryPerMonth = dailySalary*20;
-        return salaryPerMonth;
-    }
+        System.out.println("\nCalculating wages for company: " + company);
 
+        while (totalWorkingHours <= maxHoursPerMonth && totalWorkingDays < numOfWorkingDays) {
+            totalWorkingDays++;
+            int empHrs = 0;
+
+            // Generate attendance randomly (0, 1, 2)
+            Random random = new Random();
+            int attendance = random.nextInt(3);
+
+            // Determine hours based on attendance
+            switch (attendance) {
+                case IS_PART_TIME:
+                    empHrs = 4;
+                    System.out.println("Day " + totalWorkingDays + ": Part-time work. Hours: " + empHrs);
+                    break;
+                case IS_FULL_TIME:
+                    empHrs = 8;
+                    System.out.println("Day " + totalWorkingDays + ": Full-time work. Hours: " + empHrs);
+                    break;
+                default:
+                    System.out.println("Day " + totalWorkingDays + ": Employee is absent.");
+            }
+
+            totalWorkingHours += empHrs;
+
+            // Ensure total working hours don't exceed the max limit
+            if (totalWorkingHours > maxHoursPerMonth) {
+                totalWorkingHours -= empHrs;
+                break;
+            }
+        }
+
+        // Calculate total wage
+        int totalEmpWage = totalWorkingHours * empRatePerHour;
+
+        System.out.println("Total Working Hours: " + totalWorkingHours);
+        System.out.println("Total Working Days: " + totalWorkingDays);
+        System.out.println("Total Employee Wage for " + company + ": $" + totalEmpWage);
+    }
 }
